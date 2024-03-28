@@ -16,6 +16,10 @@
 		0CCE9B462BB597AF0024525A /* FastWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCE9B452BB597AF0024525A /* FastWriterTests.swift */; };
 		0CCE9B502BB597AF0024525A /* FastWriterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCE9B4F2BB597AF0024525A /* FastWriterUITests.swift */; };
 		0CCE9B522BB597AF0024525A /* FastWriterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCE9B512BB597AF0024525A /* FastWriterUITestsLaunchTests.swift */; };
+		0CCE9B602BB59AF90024525A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCE9B5F2BB59AF90024525A /* User.swift */; };
+		0CCE9B622BB59C150024525A /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCE9B612BB59C150024525A /* Word.swift */; };
+		0CCE9B652BB59EF60024525A /* HighScoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCE9B642BB59EF60024525A /* HighScoreTableViewController.swift */; };
+		0CCE9B672BB59F100024525A /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCE9B662BB59F100024525A /* PlayViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		0CCE9B4B2BB597AF0024525A /* FastWriterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FastWriterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CCE9B4F2BB597AF0024525A /* FastWriterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastWriterUITests.swift; sourceTree = "<group>"; };
 		0CCE9B512BB597AF0024525A /* FastWriterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastWriterUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0CCE9B5F2BB59AF90024525A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0CCE9B612BB59C150024525A /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		0CCE9B642BB59EF60024525A /* HighScoreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoreTableViewController.swift; sourceTree = "<group>"; };
+		0CCE9B662BB59F100024525A /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +107,10 @@
 		0CCE9B2D2BB597AC0024525A /* FastWriter */ = {
 			isa = PBXGroup;
 			children = (
+				0CCE9B5E2BB59AEC0024525A /* Models */,
 				0CCE9B2E2BB597AC0024525A /* AppDelegate.swift */,
 				0CCE9B302BB597AC0024525A /* SceneDelegate.swift */,
-				0CCE9B322BB597AC0024525A /* ViewController.swift */,
+				0CCE9B632BB59E5D0024525A /* Controllers */,
 				0CCE9B342BB597AC0024525A /* Main.storyboard */,
 				0CCE9B372BB597AE0024525A /* Assets.xcassets */,
 				0CCE9B392BB597AE0024525A /* LaunchScreen.storyboard */,
@@ -125,6 +134,25 @@
 				0CCE9B512BB597AF0024525A /* FastWriterUITestsLaunchTests.swift */,
 			);
 			path = FastWriterUITests;
+			sourceTree = "<group>";
+		};
+		0CCE9B5E2BB59AEC0024525A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0CCE9B5F2BB59AF90024525A /* User.swift */,
+				0CCE9B612BB59C150024525A /* Word.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0CCE9B632BB59E5D0024525A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0CCE9B322BB597AC0024525A /* ViewController.swift */,
+				0CCE9B642BB59EF60024525A /* HighScoreTableViewController.swift */,
+				0CCE9B662BB59F100024525A /* PlayViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,8 +286,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CCE9B602BB59AF90024525A /* User.swift in Sources */,
 				0CCE9B332BB597AC0024525A /* ViewController.swift in Sources */,
+				0CCE9B652BB59EF60024525A /* HighScoreTableViewController.swift in Sources */,
+				0CCE9B622BB59C150024525A /* Word.swift in Sources */,
 				0CCE9B2F2BB597AC0024525A /* AppDelegate.swift in Sources */,
+				0CCE9B672BB59F100024525A /* PlayViewController.swift in Sources */,
 				0CCE9B312BB597AC0024525A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
