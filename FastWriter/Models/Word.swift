@@ -35,6 +35,15 @@ class Word {
             return nil
         }
     }
+    
+    func compareWords(currentWord: String?, answerWord: String?, user: User) -> Bool {
+        if answerWord == currentWord {
+            user.setScore(score: 10)
+            return true
+        }
+        return false
+        
+    }
 }
 
 
