@@ -29,6 +29,10 @@ class User {
     
     var getScore: Int {return self.score}
     
+    func resetScore() {
+        self.score = 0
+    }
+    
     
 }
 
