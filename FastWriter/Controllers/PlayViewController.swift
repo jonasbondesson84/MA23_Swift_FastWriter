@@ -9,12 +9,13 @@ import UIKit
 
 class PlayViewController: UIViewController, UITextFieldDelegate  {
     
-    var user = User(name: "Jonas", highscore: 0, timeLeft: 30.0)
+    var user = User(name: "Jonas", highscore: 0, timeLeft: 30.0, score: 0)
     
     var word = Word()
-    var time = TimeInterval(30)
+    var time = TimeInterval(5)
     var timer: Timer?
     let formatter = DateComponentsFormatter()
+    var activeGame = true
 
     @IBOutlet weak var timeLeft: UILabel!
     @IBOutlet weak var answerWord: UITextField!
@@ -28,32 +29,37 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
         
         randomWord()
     
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: changeTime(timer:))
+        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: changeTime(timer:))
         
     }
     
     func changeTime(timer: Timer?) {
-        if time > 0 {
-            time -= 1
-            timeLeft.text = formatter.string(from: time)
+        if time > 0.1 {
+            time -= 0.1
+            let timeString = String(format: "%.1f", time)
+            timeLeft.text = "Time: \(timeString)"
         } else {
-            
+            stopGame()
         }
         
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.text == currentWord.text {
-            randomWord()
-            textField.text = ""
+        if(activeGame) {
+            if textField.text == currentWord.text {
+                user.setScore(score: 10)
+                score.text = "Score: \(user.getScore)"
+                randomWord()
+                textField.text = ""
+            }
         }
-        return true
+            return true
+            
         
     }
     
     func randomWord() {
         if let randomWord = word.getRandomWord() {
-            user.highscore += 10
             currentWord.text = randomWord.word
     
         } else {
@@ -61,6 +67,15 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
         }
     }
     
+    func stopGame() {
+        activeGame = false
+        
+    }
+    
+    
+    deinit {
+        timer?.invalidate()
+    }
     
    // override func viewDidAppear(_ animated: Bool) {
      //   super.viewDidAppear(animated)
