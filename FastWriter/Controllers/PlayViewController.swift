@@ -41,8 +41,7 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
 
         loadHighscore()
         resetGame()        
-        timerWord = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: wordTimer(timer:))
-        timerGame = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: changeGameTimer(timer:))
+        
         
     }
     
@@ -67,6 +66,8 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
     }
     
     func resetGame() {
+        timerWord = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: wordTimer(timer:))
+        timerGame = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: changeGameTimer(timer:))
         gameTime = TimeInterval(TIME_FOR_GAME)
         wordTime = TimeInterval(TIME_FOR_WORD)
         stackViewPlayAgain.isHidden = true
