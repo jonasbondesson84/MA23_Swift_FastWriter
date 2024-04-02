@@ -10,4 +10,9 @@ import Foundation
 struct User {
     var name: String
     var highscore: Int
+    var timeLeft: Double
+}
+
+func timeLeft(timer: Timer?) {
+    
 }
