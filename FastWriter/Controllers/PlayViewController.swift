@@ -10,8 +10,10 @@ import UIKit
 class PlayViewController: UIViewController, UITextFieldDelegate  {
     
     var user = User(name: "Jonas", highscore: 0, timeLeft: 30.0, score: 0)
+    var highScore = [User]()
     let TIME_FOR_WORD = 5
     let TIME_FOR_GAME = 10
+
     var word = Word()
     var gameTime = 0.0
     var wordTime = 0.0
@@ -36,8 +38,9 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
         super.viewDidLoad()
         answerWord.delegate = self
         answerWord.becomeFirstResponder()
-        resetGame()
-        
+
+        loadHighscore()
+        resetGame()        
         timerWord = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: wordTimer(timer:))
         timerGame = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: changeGameTimer(timer:))
         
@@ -57,6 +60,7 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
             let timeString = String(format: "%.1f", gameTime)
             gameTimeLeft.text = "Game Time: \(timeString)"
         } else {
+            
             stopGame()
         }
         
@@ -117,7 +121,9 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
     }
     
     func stopGame() {
+        print("stopGame anropas")
         activeGame = false
+        addHighscore(name: user.name, highscore: user.getScore)
         view.endEditing(true)
         stackViewGame.isHidden = true
         stackViewPlayAgain.isHidden = false
@@ -132,11 +138,44 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
         timerWord?.invalidate()
     }
     
-   // override func viewDidAppear(_ animated: Bool) {
-     //   super.viewDidAppear(animated)
-     //   answerWord.becomeFirstResponder()
-   // }
+        func saveHighscore() {
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(highScore) {
+                UserDefaults.standard.set(encoded, forKey: "userhighscore")
+            }
+        }
         
+    func addHighscore(name: String, highscore: Int) {
+        print("Lägger till användare: \(name) med poäng: \(highscore)")
+        let newHighscore = User(name: name, highscore: highscore,timeLeft: 0, score: 0)
+        highScore.append(newHighscore) // Ändra här från user till highScore
+        saveHighscore()
+    }
+         
+    
+    func loadHighscore() {
+        if let savedHighscore = UserDefaults.standard.object(forKey: "userhighscore") as? Data {
+            let decoder = JSONDecoder()
+            if let loadedHighscore = try? decoder.decode([User].self, from: savedHighscore) {
+                highScore = loadedHighscore
+                highScore.sort { $0.highscore > $1.highscore }
+                print(highScore)
+            }
+        }
+    }
+
+        var counted: Int {
+            return highScore.count
+        }
+    
+        func highscoreEntry(at index: Int) -> User? {
+            if index >= 0 && index < highScore.count {
+                print(highScore.count)
+                return highScore[index]
+            }
+            return nil
+        }
+    }
         
         
     
@@ -145,7 +184,7 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
 
     
   
-    
+    /*
      // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -154,6 +193,4 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    
-
-}
+*/
