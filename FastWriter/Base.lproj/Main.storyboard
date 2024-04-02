@@ -51,7 +51,7 @@
             </objects>
             <point key="canvasLocation" x="1064.885496183206" y="-2.1126760563380285"/>
         </scene>
-        <!--High Score Table View Controller-->
+        <!--Highscore-->
         <scene sceneID="bE2-Mq-tX9">
             <objects>
                 <tableViewController id="cRD-YC-28G" customClass="HighScoreTableViewController" customModule="FastWriter" customModuleProvider="target" sceneMemberID="viewController">
@@ -60,7 +60,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="3Ys-TK-FVp">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="3Ys-TK-FVp">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Ys-TK-FVp" id="tdr-AS-H6a">
@@ -74,7 +74,7 @@
                             <outlet property="delegate" destination="cRD-YC-28G" id="ADw-wU-duI"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="rsp-E7-KV4"/>
+                    <navigationItem key="navigationItem" title="Highscore" id="rsp-E7-KV4"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wrj-ml-2E4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
