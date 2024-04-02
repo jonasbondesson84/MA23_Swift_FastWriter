@@ -124,6 +124,8 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
         print("stopGame anropas")
         activeGame = false
         addHighscore(name: user.name, highscore: user.getScore)
+        timerGame?.invalidate()
+        timerWord?.invalidate()
         view.endEditing(true)
         stackViewGame.isHidden = true
         stackViewPlayAgain.isHidden = false
@@ -141,7 +143,7 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
         func saveHighscore() {
             let encoder = JSONEncoder()
             if let encoded = try? encoder.encode(highScore) {
-                UserDefaults.standard.set(encoded, forKey: "userhighscore")
+                UserDefaults.standard.set(encoded, forKey: "userhighscores")
             }
         }
         
@@ -154,7 +156,7 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
          
     
     func loadHighscore() {
-        if let savedHighscore = UserDefaults.standard.object(forKey: "userhighscore") as? Data {
+        if let savedHighscore = UserDefaults.standard.object(forKey: "userhighscores") as? Data {
             let decoder = JSONDecoder()
             if let loadedHighscore = try? decoder.decode([User].self, from: savedHighscore) {
                 highScore = loadedHighscore
