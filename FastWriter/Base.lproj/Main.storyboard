@@ -16,27 +16,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GwS-lS-shq">
-                                <rect key="frame" x="169" y="272" width="56" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Play"/>
-                                <connections>
-                                    <segue destination="oov-7n-bdM" kind="show" identifier="playSegueID" id="87p-oe-ghY"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EXc-eO-rWh">
-                                <rect key="frame" x="146" y="409" width="102" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Highscore"/>
-                                <connections>
-                                    <segue destination="cRD-YC-28G" kind="show" identifier="highScoreSegueID" id="Qb9-Gp-BEm"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Xua-7H-p0Q">
+                                <rect key="frame" x="145.66666666666666" y="350.33333333333331" width="102" height="75.666666666666686"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GwS-lS-shq">
+                                        <rect key="frame" x="0.0" y="0.0" width="102" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Play"/>
+                                        <connections>
+                                            <segue destination="oov-7n-bdM" kind="show" identifier="playSegueID" id="87p-oe-ghY"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EXc-eO-rWh">
+                                        <rect key="frame" x="0.0" y="41.333333333333371" width="102" height="34.333333333333343"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Highscore"/>
+                                        <connections>
+                                            <segue destination="cRD-YC-28G" kind="show" identifier="highScoreSegueID" id="Qb9-Gp-BEm"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Xua-7H-p0Q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VXh-5d-571"/>
+                            <constraint firstItem="Xua-7H-p0Q" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-38" id="dme-cf-1Hx"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8Q4-zD-x0Z"/>
                 </viewController>
@@ -80,10 +87,48 @@
                     <view key="view" contentMode="scaleToFill" id="7MP-RU-CwM">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="awT-9Z-aLy">
+                                <rect key="frame" x="96.666666666666686" y="176.66666666666669" width="200" height="174.66666666666669"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31F-wt-inO">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current word" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BsI-0n-ic1">
+                                        <rect key="frame" x="0.0" y="70.333333333333343" width="200" height="20.333333333333329"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="ih5-5m-O02"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="68c-sM-IBR">
+                                        <rect key="frame" x="0.0" y="140.66666666666666" width="200" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="currentWord:" destination="oov-7n-bdM" eventType="editingDidEnd" id="ZC0-Lq-vTa"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="9JI-a0-gcg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="awT-9Z-aLy" firstAttribute="centerY" secondItem="7MP-RU-CwM" secondAttribute="centerY" constant="-162" id="o6f-Bt-Ba3"/>
+                            <constraint firstItem="awT-9Z-aLy" firstAttribute="centerX" secondItem="7MP-RU-CwM" secondAttribute="centerX" id="vST-np-Rqb"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BW6-0d-4Ed"/>
+                    <connections>
+                        <outlet property="answerWord" destination="68c-sM-IBR" id="pus-bK-1tw"/>
+                        <outlet property="currentWord" destination="BsI-0n-ic1" id="l9v-cy-U7c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A7m-kk-8k2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -105,7 +150,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jqL-f1-NzG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138.1679389312977" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="123" y="-2"/>
         </scene>
     </scenes>
     <resources>
