@@ -10,6 +10,8 @@ import UIKit
 class PlayViewController: UIViewController, UITextFieldDelegate  {
     
     var user = User(name: "Jonas", highscore: 0, timeLeft: 30.0, score: 0)
+    var highScore = [User]()
+    
     
     var word = Word()
     var time = TimeInterval(5)
@@ -26,6 +28,7 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
         super.viewDidLoad()
         answerWord.delegate = self
         answerWord.becomeFirstResponder()
+        loadHighscore()
         
         randomWord()
     
@@ -39,6 +42,7 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
             let timeString = String(format: "%.1f", time)
             timeLeft.text = "Time: \(timeString)"
         } else {
+            
             stopGame()
         }
         
@@ -68,7 +72,10 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
     }
     
     func stopGame() {
+        print("stopGame anropas")
         activeGame = false
+        timer?.invalidate()
+        addHighscore(name: user.name, highscore: user.getScore)
         
     }
     
@@ -77,11 +84,44 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
         timer?.invalidate()
     }
     
-   // override func viewDidAppear(_ animated: Bool) {
-     //   super.viewDidAppear(animated)
-     //   answerWord.becomeFirstResponder()
-   // }
+        func saveHighscore() {
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(highScore) {
+                UserDefaults.standard.set(encoded, forKey: "userhighscore")
+            }
+        }
         
+    func addHighscore(name: String, highscore: Int) {
+        print("Lägger till användare: \(name) med poäng: \(highscore)")
+        let newHighscore = User(name: name, highscore: highscore,timeLeft: 0, score: 0)
+        highScore.append(newHighscore) // Ändra här från user till highScore
+        saveHighscore()
+    }
+         
+    
+    func loadHighscore() {
+        if let savedHighscore = UserDefaults.standard.object(forKey: "userhighscore") as? Data {
+            let decoder = JSONDecoder()
+            if let loadedHighscore = try? decoder.decode([User].self, from: savedHighscore) {
+                highScore = loadedHighscore
+                highScore.sort { $0.highscore > $1.highscore }
+                print(highScore)
+            }
+        }
+    }
+
+        var counted: Int {
+            return highScore.count
+        }
+    
+        func highscoreEntry(at index: Int) -> User? {
+            if index >= 0 && index < highScore.count {
+                print(highScore.count)
+                return highScore[index]
+            }
+            return nil
+        }
+    }
         
         
     
@@ -99,5 +139,6 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
         // Pass the selected object to the new view controller.
     }
     */
+    
 
-}
+

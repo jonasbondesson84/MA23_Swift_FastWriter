@@ -7,7 +7,7 @@
 
 import Foundation
 
-class User {
+class User: Codable {
     var name: String
     var highscore: Int
     private var timeLeft: Double
