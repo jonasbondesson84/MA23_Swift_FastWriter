@@ -36,14 +36,8 @@ class Word {
         }
     }
     
-    func compareWords(currentWord: String?, answerWord: String?, user: User) -> Bool {
-        if answerWord == currentWord {
-            user.setScore(score: 10)
-            return true
-        }
-        return false
-        
+    func compareWords(currentWord: String?, answerWord: String?) -> Bool {
+        return answerWord == currentWord
     }
+    
 }
-
-
