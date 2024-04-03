@@ -9,9 +9,9 @@ import UIKit
 
 class PlayViewController: UIViewController, UITextFieldDelegate  {
     
-    var user = User(name: "Jonas", highscore: 0, timeLeft: 30.0, score: 0)
+    var user = User(name: "Jonas", highscore: 0, score: 0)
     var highScore = [User]()
-    let TIME_FOR_WORD = 5
+    let TIME_FOR_WORD = 5.0
     let TIME_FOR_GAME = 10
 
     var word = Word()
@@ -54,26 +54,27 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
     }
     
     func changeGameTimer(timer: Timer?) {
-        if gameTime > 0.1 {
-            gameTime -= 0.1
-            let timeString = String(format: "%.1f", gameTime)
-            gameTimeLeft.text = "Game Time: \(timeString)"
-        } else {
+        if gameTime > 0 {
+            gameTime -= 1
+            let timeString = String(Int(gameTime))
+            gameTimeLeft.text = "Time left: \(timeString)"
+            if gameTime <= 0 {
+                stopGame()
+            }
             
-            stopGame()
         }
-        
     }
     
     func resetGame() {
-        timerWord = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: wordTimer(timer:))
-        timerGame = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: changeGameTimer(timer:))
+        timerWord = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: wordTimer(timer:))
+        timerGame = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: changeGameTimer(timer:))
         gameTime = TimeInterval(TIME_FOR_GAME)
         wordTime = TimeInterval(TIME_FOR_WORD)
         stackViewPlayAgain.isHidden = true
         randomWord()
         user.resetScore()
-        score.text = "Score: 0"
+        gameTimeLeft.text = "Time left: \(Int(gameTime))"
+        score.text = "Your score: 0"
         activeGame = true
         stackViewGame.isHidden = false
         stackViewPlayAgain.isHidden = true
@@ -83,22 +84,25 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
     func wordTimer(timer: Timer?) {
         if activeGame {
             if wordTime >= 0 {
-                wordTime -= 0.5
-                let time = Int(ceil(wordTime))
-                timeLeft.text = "Time: \(time)"
-                if word.compareWords(currentWord: currentWord.text, answerWord: answerWord.text , user: user) {
-                    score.text = "Score: \(user.getScore)"
+                wordTime -= 0.1
+                let time = Int((wordTime )*10)
+                timeLeft.text = "Score: \(time)"
+                if word.compareWords(currentWord: currentWord.text, answerWord: answerWord.text) {
+                    
+//                    UIView.animate(withDuration: 0.5, animations: {self.timeLeft.alpha = 1.0}, completion: {
+//                        _ in UIView.animate(withDuration: 0.5, animations: {self.timeLeft.alpha = 0.0})
+//                    })
+                    user.setScore(timeLeft: wordTime)
+                    score.text = "Your score: \(user.getScore)"
                     answerWord.text = ""
-                    //                timer?.invalidate()
                     randomWord()
                 }
             } else {
-                //            timer?.invalidate()
                 if user.getScore > 0 {
-                    user.setScore(score: -10)
-                    score.text = "Score: \(user.getScore)"
+                    user.setScore(timeLeft: nil)
+                    timeLeft.text = "Score: -10"
+                    score.text = "Your score: \(user.getScore)"
                     answerWord.text = ""
-                    
                 }
                 randomWord()
             }
@@ -113,7 +117,7 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
         if let randomWord = word.getRandomWord() {
             wordTime = TimeInterval(TIME_FOR_WORD)
             let time = Int(wordTime)
-            timeLeft.text = "Time: \(time)"
+//            timeLeft.text = "Time: \(time)"
             currentWord.text = randomWord.word
     
         } else {
@@ -141,45 +145,44 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
         timerWord?.invalidate()
     }
     
-        func saveHighscore() {
-            let encoder = JSONEncoder()
-            if let encoded = try? encoder.encode(highScore) {
-                UserDefaults.standard.set(encoded, forKey: "userhighscores")
-            }
-        }
-        
-    func addHighscore(name: String, highscore: Int) {
-        print("Lägger till användare: \(name) med poäng: \(highscore)")
-        let newHighscore = User(name: name, highscore: highscore,timeLeft: 0, score: 0)
-        highScore.append(newHighscore) // Ändra här från user till highScore
-        saveHighscore()
-    }
-         
-    
-    func loadHighscore() {
-        if let savedHighscore = UserDefaults.standard.object(forKey: "userhighscores") as? Data {
-            let decoder = JSONDecoder()
-            if let loadedHighscore = try? decoder.decode([User].self, from: savedHighscore) {
-                highScore = loadedHighscore
-                highScore.sort { $0.highscore > $1.highscore }
-                print(highScore)
-            }
-        }
-    }
+    func saveHighscore() {
+               let encoder = JSONEncoder()
+               if let encoded = try? encoder.encode(highScore) {
+                   UserDefaults.standard.set(encoded, forKey: "userhighscores")
+               }
+           }
+           
+       func addHighscore(name: String, highscore: Int) {
+           print("Lägger till användare: \(name) med poäng: \(highscore)")
+           let newHighscore = User(name: name, highscore: highscore, score: 0)
+           highScore.append(newHighscore) // Ändra här från user till highScore
+           saveHighscore()
+       }
+            
+       
+       func loadHighscore() {
+           if let savedHighscore = UserDefaults.standard.object(forKey: "userhighscores") as? Data {
+               let decoder = JSONDecoder()
+               if let loadedHighscore = try? decoder.decode([User].self, from: savedHighscore) {
+                   highScore = loadedHighscore
+                   highScore.sort { $0.highscore > $1.highscore }
+                   print(highScore)
+               }
+           }
+       }
 
-        var counted: Int {
-            return highScore.count
-        }
-    
-        func highscoreEntry(at index: Int) -> User? {
-            if index >= 0 && index < highScore.count {
-                print(highScore.count)
-                return highScore[index]
-            }
-            return nil
-        }
-    }
-        
+           var counted: Int {
+               return highScore.count
+           }
+       
+           func highscoreEntry(at index: Int) -> User? {
+               if index >= 0 && index < highScore.count {
+                   print(highScore.count)
+                   return highScore[index]
+               }
+               return nil
+           }
+       }
         
     
         
