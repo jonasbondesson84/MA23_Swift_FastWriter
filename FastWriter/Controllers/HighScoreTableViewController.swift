@@ -32,7 +32,7 @@ class HighScoreTableViewController: UITableViewController {
            let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellSegue, for: indexPath)
            
            if let tableViewEntry = highScore.highscoreEntry(at: indexPath.row) {
-               cell.textLabel?.text = "\(tableViewEntry.name) - \(tableViewEntry.highscore)"
+               cell.textLabel?.text = "\(indexPath.row + 1). \(tableViewEntry.name) - \(tableViewEntry.highscore) Points"
            }
    
            return cell
