@@ -42,17 +42,28 @@
                                     </textField>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5RB-JK-hOa">
+                                <rect key="frame" x="36.666666666666657" y="437" width="320" height="216"/>
+                                <subviews>
+                                    <pickerView contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="NHP-YN-aZg">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
+                                    </pickerView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="5RB-JK-hOa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="119" id="3Cg-hf-ztK"/>
                             <constraint firstItem="Xua-7H-p0Q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VXh-5d-571"/>
+                            <constraint firstItem="5RB-JK-hOa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WV0-pS-B2V"/>
                             <constraint firstItem="Xua-7H-p0Q" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-38" id="dme-cf-1Hx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8Q4-zD-x0Z"/>
                     <connections>
                         <outlet property="changeName" destination="2oQ-GY-dbd" id="0Oa-BS-nuo"/>
+                        <outlet property="modeSelector" destination="NHP-YN-aZg" id="WkB-xg-61d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
