@@ -42,10 +42,20 @@
                                     </textField>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zRK-fO-Oxh">
+                                <rect key="frame" x="36.666666666666657" y="446" width="320" height="216"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UL0-OL-h9a">
+                                        <rect key="frame" x="0.0" y="0.0" width="530" height="216"/>
+                                    </pickerView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="zRK-fO-Oxh" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="128" id="9gZ-jc-1Yt"/>
+                            <constraint firstItem="zRK-fO-Oxh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Otw-y8-sg8"/>
                             <constraint firstItem="Xua-7H-p0Q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VXh-5d-571"/>
                             <constraint firstItem="Xua-7H-p0Q" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-38" id="dme-cf-1Hx"/>
                         </constraints>
@@ -53,6 +63,7 @@
                     <navigationItem key="navigationItem" id="8Q4-zD-x0Z"/>
                     <connections>
                         <outlet property="changeName" destination="2oQ-GY-dbd" id="0Oa-BS-nuo"/>
+                        <outlet property="modeSelector" destination="UL0-OL-h9a" id="86o-cn-4DM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -22,6 +22,7 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
     let formatter = DateComponentsFormatter()
     var activeGame = true
     var segueEndGameID = ""
+    var selectedMode: String?
 
     @IBOutlet weak var timeLeft: UILabel!
     @IBOutlet weak var answerWord: UITextField!
@@ -38,7 +39,6 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
         super.viewDidLoad()
         answerWord.delegate = self
         answerWord.becomeFirstResponder()
-
         loadHighscore()
         resetGame()        
         
@@ -112,14 +112,34 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
     }
     
     
-    
     func randomWord() {
-        if let randomWord = word.getRandomWord() {
+        guard let selectedMode = selectedMode?.lowercased() else {
+            print("Selected mode is nil")
+            return
+        }
+        
+        var difficultyForSelectedMode: Int {
+            switch selectedMode {
+            case "easy":
+                return 1
+            case "medium":
+                return 2
+            case "hard":
+                return 3
+            default:
+           
+                return 1
+            }
+        }
+        
+        print(selectedMode)
+
+        let filteredWords = word.words.filter { $0.difficulty == difficultyForSelectedMode }
+    
+        if let randomWord = filteredWords.randomElement() {
             wordTime = TimeInterval(TIME_FOR_WORD)
             let time = Int(wordTime)
-//            timeLeft.text = "Time: \(time)"
-            currentWord.text = randomWord.word
-    
+            currentWord.text = randomWord.word.capitalized
         } else {
             currentWord.text = "Oops! Inga fler ord!"
         }
