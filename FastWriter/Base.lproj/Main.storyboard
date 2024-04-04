@@ -97,28 +97,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="awT-9Z-aLy">
-                                <rect key="frame" x="96.666666666666686" y="112.99999999999997" width="200" height="315.33333333333326"/>
+                                <rect key="frame" x="46.666666666666657" y="113" width="300" height="367"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GameTime" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gje-jU-Whn">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="20.333333333333332"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="20.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <progressView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="kF9-93-s39">
+                                        <rect key="frame" x="0.0" y="70.333333333333343" width="300" height="2.6666666666666714"/>
+                                        <color key="tintColor" systemColor="systemGreenColor"/>
+                                    </progressView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31F-wt-inO">
-                                        <rect key="frame" x="0.0" y="70.333333333333343" width="200" height="20.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="121.99999999999999" width="300" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRU-p2-td9">
-                                        <rect key="frame" x="0.0" y="140.66666666666666" width="200" height="20.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="192.33333333333331" width="300" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current word" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BsI-0n-ic1">
-                                        <rect key="frame" x="0.0" y="211" width="200" height="20.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="262.66666666666669" width="300" height="20.333333333333314"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="ih5-5m-O02"/>
                                         </constraints>
@@ -127,11 +131,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="68c-sM-IBR">
-                                        <rect key="frame" x="0.0" y="281.33333333333331" width="200" height="34"/>
+                                        <rect key="frame" x="0.0" y="333" width="300" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textField>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="aBL-2a-qSI"/>
+                                </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Tha-kL-laV">
                                 <rect key="frame" x="71.666666666666686" y="326" width="250" height="200"/>
@@ -189,6 +196,7 @@
                         <outlet property="gameScore" destination="a0D-RK-n79" id="8VD-6G-oRY"/>
                         <outlet property="gameTimeLeft" destination="Gje-jU-Whn" id="6sP-ac-jrR"/>
                         <outlet property="score" destination="hRU-p2-td9" id="eBb-9o-TZ2"/>
+                        <outlet property="scoreBar" destination="kF9-93-s39" id="eiR-VZ-FCP"/>
                         <outlet property="stackViewGame" destination="awT-9Z-aLy" id="DQF-D4-i5s"/>
                         <outlet property="stackViewPlayAgain" destination="Tha-kL-laV" id="chs-Sx-urz"/>
                         <outlet property="timeLeft" destination="31F-wt-inO" id="v3V-px-zUt"/>
@@ -220,6 +228,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
