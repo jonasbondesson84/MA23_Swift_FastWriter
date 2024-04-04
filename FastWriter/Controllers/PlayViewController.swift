@@ -12,7 +12,7 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
     var user = User(name: "Jonas", highscore: 0, score: 0)
     var highScore = [User]()
     let TIME_FOR_WORD = 5.0
-    let TIME_FOR_GAME = 10
+    let TIME_FOR_GAME = 30
 
     var word = Word()
     var gameTime = 0.0
@@ -30,6 +30,7 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
     @IBOutlet weak var score: UILabel!
     @IBOutlet weak var gameTimeLeft: UILabel!
     
+    @IBOutlet weak var scoreBar: UIProgressView!
     @IBOutlet weak var gameScore: UILabel!
     @IBOutlet weak var stackViewGame: UIStackView!
     @IBOutlet weak var stackViewPlayAgain: UIStackView!
@@ -84,9 +85,11 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
     func wordTimer(timer: Timer?) {
         if activeGame {
             if wordTime >= 0 {
+                updateProgessBar()
                 wordTime -= 0.1
                 let time = Int((wordTime )*10)
                 timeLeft.text = "Score: \(time)"
+                
                 if word.compareWords(currentWord: currentWord.text, answerWord: answerWord.text) {
                     
 //                    UIView.animate(withDuration: 0.5, animations: {self.timeLeft.alpha = 1.0}, completion: {
@@ -137,6 +140,23 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
         gameScore.text = "Your score was \(user.getScore)"
         //Lägga till vad som ska hända när spelet tar slut här.
         
+    }
+    
+    func updateProgessBar() {
+        scoreBar.progress -= 0.02
+        scoreBar.setProgress(scoreBar.progress, animated: true)
+        if scoreBar.progress < 0.7 {
+            scoreBar.tintColor = UIColor.orange
+        }
+        if scoreBar.progress < 0.3 {
+            scoreBar.tintColor = UIColor.red
+        }
+        if scoreBar.progress == 0.0 {
+            scoreBar.progress = 1.0
+            scoreBar.setProgress(scoreBar.progress, animated: false)
+            scoreBar.tintColor = UIColor.green
+            
+        }
     }
     
     
