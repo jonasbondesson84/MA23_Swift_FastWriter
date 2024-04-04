@@ -19,6 +19,7 @@ class ViewController: UIViewController , UIPickerViewDataSource, UIPickerViewDel
     @IBOutlet weak var changeName: UITextField!
     
     @IBOutlet weak var modeSelector: UIPickerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         highScore.loadHighscore()
@@ -59,9 +60,9 @@ class ViewController: UIViewController , UIPickerViewDataSource, UIPickerViewDel
         selectedMode = modes[row]
         print("Selected mode: \(selectedMode)")
     }
-
     
 }
+
 
 
 

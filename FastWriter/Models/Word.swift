@@ -7,11 +7,12 @@
 
 import Foundation
 
+
+
 struct structWord {
     var word: String
     var difficulty: Int
 }
-
 class Word {
     var words = [structWord]()
     
@@ -49,6 +50,7 @@ class Word {
         words.append(structWord(word: "Undertrycka", difficulty: 3))
     
     }
+
     
     func getRandomWord() -> structWord? {
         if !words.isEmpty {

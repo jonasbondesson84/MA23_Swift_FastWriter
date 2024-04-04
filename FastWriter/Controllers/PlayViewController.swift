@@ -13,7 +13,6 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
     var highScore = [User]()
     let TIME_FOR_WORD = 5.0
     let TIME_FOR_GAME = 10
-
     var word = Word()
     var gameTime = 0.0
     var wordTime = 0.0
@@ -23,7 +22,6 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
     var activeGame = true
     var segueEndGameID = ""
     var selectedMode: String?
-
     @IBOutlet weak var timeLeft: UILabel!
     @IBOutlet weak var answerWord: UITextField!
     
@@ -40,7 +38,7 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
         answerWord.delegate = self
         answerWord.becomeFirstResponder()
         loadHighscore()
-        resetGame()        
+        resetGame()
         
         
     }
@@ -133,7 +131,6 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
         }
         
         print(selectedMode)
-
         let filteredWords = word.words.filter { $0.difficulty == difficultyForSelectedMode }
     
         if let randomWord = filteredWords.randomElement() {
@@ -190,7 +187,6 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
                }
            }
        }
-
            var counted: Int {
                return highScore.count
            }
@@ -206,13 +202,10 @@ class PlayViewController: UIViewController, UITextFieldDelegate  {
         
     
         
-
-
     
   
     /*
      // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
